@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Crito", "Crito.csproj", "{75371CCA-4933-4725-93BE-94F5C4E9EBE9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{75371CCA-4933-4725-93BE-94F5C4E9EBE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75371CCA-4933-4725-93BE-94F5C4E9EBE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75371CCA-4933-4725-93BE-94F5C4E9EBE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75371CCA-4933-4725-93BE-94F5C4E9EBE9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A74381FF-942D-4E27-BA0C-4580134497AB}
+	EndGlobalSection
+EndGlobal
