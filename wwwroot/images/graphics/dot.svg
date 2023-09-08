@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="12" viewBox="0 0 120 12">
+  <g id="dot" transform="translate(-900 -6962)">
+    <circle id="dot-2" data-name="dot" cx="6" cy="6" r="6" transform="translate(927 6962)" fill="#191919"/>
+    <circle id="dot-3" data-name="dot" cx="6" cy="6" r="6" transform="translate(900 6962)" fill="#191919" opacity="0.2"/>
+    <circle id="dot-4" data-name="dot" cx="6" cy="6" r="6" transform="translate(954 6962)" fill="#191919" opacity="0.2"/>
+    <circle id="dot-5" data-name="dot" cx="6" cy="6" r="6" transform="translate(981 6962)" fill="#191919" opacity="0.2"/>
+    <circle id="dot-6" data-name="dot" cx="6" cy="6" r="6" transform="translate(1008 6962)" fill="#191919" opacity="0.2"/>
+  </g>
+</svg>

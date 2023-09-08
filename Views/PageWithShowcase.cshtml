@@ -1,7 +1,19 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.PageWithShowcase>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
+
 @{
 	Layout = "_Layout.cshtml";
-	ViewData["title"] = @Model.Value("title");
+	ViewData["PageTitle"] = @Model.Value("pageTitle");
+	ViewData["PageDescription"] = @Model.Value("pageDescription");
 }
+
+
+<header>
+    @await Html.PartialAsync("_NavBar")
+    @await Html.PartialAsync("_Showcase")
+</header>
+<main>
+    
+</main>

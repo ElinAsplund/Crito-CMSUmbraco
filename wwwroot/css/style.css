@@ -1228,6 +1228,15 @@ button:hover {
   background-color: #645634;
   color: white;
 }
+button:hover a {
+  color: white;
+}
+button a {
+  font-weight: 600;
+}
+button a i {
+  padding-left: 10px;
+}
 button i {
   padding-left: 10px;
 }
