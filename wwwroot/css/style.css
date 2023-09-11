@@ -580,7 +580,10 @@ footer .footer-bottom .social-media a i {
 .nav-bar .container .all-info .nav-links .links a:hover .link-underline {
   display: block;
 }
-.nav-bar .container .all-info .nav-links .links a:focus .link-underline {
+.nav-bar .container .all-info .nav-links .links a:hover.active .link-underline {
+  border-bottom: 1px #F94D1C solid;
+}
+.nav-bar .container .all-info .nav-links .links a.active .link-underline {
   display: block;
   border-bottom: 1px #191919 solid;
 }
