@@ -9,17 +9,17 @@
             <h1>@Model.Value("showcaseTitle")</h1>
             <p>@Model.Value("showcaseDescription")</p>
             <div class="btn-holder">
-                <button class="yellow-btn">
-                    <a href="@Model.Value("showcaseButtonUrl")">
+                <a href="@Model.Value("showcaseButtonUrl")">
+                    <button class="yellow-btn">
                         @Model.Value("showcaseButtonText")
                         <i class="fa-regular fa-arrow-up-right"></i>
-                    </a>
-                </button>
-                <button class="yellow-btn">
-                    <a href="#"> 
+                    </button>
+                </a>
+                <a href="#"> 
+                    <button class="yellow-btn">
                         Learn More<i class="fa-regular fa-arrow-up-right"></i>
-                    </a>
-                </button>
+                    </button>
+                </a>
             </div>
         </div>
         <div class="img-holder">

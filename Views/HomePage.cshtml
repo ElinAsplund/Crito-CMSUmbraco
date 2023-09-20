@@ -4,8 +4,13 @@
 
 @{
 	Layout = "_LayoutWithShowcase.cshtml";
-	ViewData["PageTitle"] = @Model.Value("pageTitle");
-	ViewData["PageDescription"] = @Model.Value("pageDescription");
+	ViewData["PageTitle"] = Model.Value("pageTitle");
+	ViewData["PageDescription"] = Model.Value("pageDescription");
 }
 
 @await Html.PartialAsync("_Brands")
+@await Html.PartialAsync("_Features")
+
+<!-- insert about-company here -->
+
+@await Html.PartialAsync("_OurServices")

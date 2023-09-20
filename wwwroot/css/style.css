@@ -474,20 +474,20 @@ footer .footer-bottom .social-media a i {
 .features .container .wrap .features-learn-more button {
   width: 80%;
 }
-.features .container .wrap .features-grid {
+.features .container .wrap .features-grid .umb-block-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 60px;
 }
-.features .container .wrap .features-grid a {
+.features .container .wrap .features-grid .umb-block-list a {
   color: #191919;
   text-decoration: none;
 }
-.features .container .wrap .features-grid a:hover {
+.features .container .wrap .features-grid .umb-block-list a:hover {
   color: #F94D1C;
 }
-.features .container .wrap .features-grid i {
+.features .container .wrap .features-grid .umb-block-list i {
   font-size: 40px;
   margin-bottom: 25px;
 }
@@ -495,12 +495,13 @@ footer .footer-bottom .social-media a i {
 .nav-bar {
   background-color: #F0EFE9;
   color: #191919;
-  position: sticky;
+  position: fixed;
+  height: 140px;
   left: auto;
   right: auto;
   top: 0;
   width: 100%;
-  z-index: 10;
+  z-index: 100;
 }
 .nav-bar a {
   color: #191919;
@@ -658,23 +659,23 @@ footer .footer-bottom .social-media a i {
   width: 40%;
   margin-bottom: 2rem;
 }
-.our-services .container .our-service-grid {
+.our-services .container .our-service-grid .umb-block-list {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr;
   gap: 30px;
   padding-bottom: 2rem;
 }
-.our-services .container .our-service-grid .service-card {
+.our-services .container .our-service-grid .umb-block-list .service-card {
   background-color: white;
   padding: 50px 20px 50px 20px;
   transition: 0.2s ease-in-out;
 }
-.our-services .container .our-service-grid .service-card a {
+.our-services .container .our-service-grid .umb-block-list .service-card a {
   text-decoration: none;
   color: #191919;
 }
-.our-services .container .our-service-grid .service-card a hr {
+.our-services .container .our-service-grid .umb-block-list .service-card a hr {
   margin: 0;
   margin-bottom: 2rem;
   border: 1px #191919 solid;
@@ -682,18 +683,18 @@ footer .footer-bottom .social-media a i {
   color: black;
   opacity: 1;
 }
-.our-services .container .our-service-grid .service-card a p {
+.our-services .container .our-service-grid .umb-block-list .service-card a p {
   color: #5E5E5E;
 }
-.our-services .container .our-service-grid .service-card a .round-btn-black {
+.our-services .container .our-service-grid .umb-block-list .service-card a .round-btn-black {
   margin-top: 15px;
   transition: 0.15s ease-in-out;
 }
-.our-services .container .our-service-grid .service-card:hover {
+.our-services .container .our-service-grid .umb-block-list .service-card:hover {
   cursor: pointer;
   background-color: #F9D783;
 }
-.our-services .container .our-service-grid .service-card:hover .round-btn-black {
+.our-services .container .our-service-grid .umb-block-list .service-card:hover .round-btn-black {
   background-color: white;
   color: #191919;
   border: transparent 1px solid;
@@ -767,6 +768,7 @@ footer .footer-bottom .social-media a i {
   padding: 100px 0;
   background-color: #F0EFE9;
   position: relative;
+  margin-top: 140px;
 }
 .page-topic .container {
   display: flex;
@@ -777,6 +779,7 @@ footer .footer-bottom .social-media a i {
 .page-topic .container .breadcrumb a {
   font-weight: 300;
   margin-left: 1rem;
+  z-index: 10;
 }
 .page-topic .container .breadcrumb a:hover {
   color: #F94D1C;
@@ -789,6 +792,7 @@ footer .footer-bottom .social-media a i {
 .page-topic .container h1 {
   font-size: 56px;
   margin: 0;
+  text-align: center;
 }
 .page-topic img {
   position: absolute;
@@ -856,6 +860,7 @@ footer .footer-bottom .social-media a i {
 .showcase {
   background-color: #F0EFE9;
   position: relative;
+  margin-top: 140px;
 }
 .showcase h1 {
   font-size: 90px;
@@ -924,7 +929,7 @@ footer .footer-bottom .social-media a i {
   padding: 120px 0;
 }
 .the-news-article .container div .heading {
-  width: 40%;
+  width: 55%;
 }
 .the-news-article .container div .article-info {
   font-family: "DM Sans", sans-serif;
@@ -991,7 +996,7 @@ footer .footer-bottom .social-media a i {
   align-items: center;
   background-color: #F3F3F3;
   margin-right: 1rem;
-  padding: 1rem 2.5rem;
+  padding: 0.5rem 1rem;
   font-weight: 500;
   border-radius: 30px;
   min-width: 100px;
@@ -1114,7 +1119,6 @@ footer .footer-bottom .social-media a i {
 .the-news .container .article-and-news-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
   gap: 2rem;
 }
 .the-news .container .article-and-news-grid .article-and-news-card {

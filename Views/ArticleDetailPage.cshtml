@@ -1,8 +1,120 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ArticleDetailPage>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Services;
+@inject IUserService UserService;
+@using Umbraco.Cms.Core.Models.PublishedContent;
+
 @{
-	Layout = "_LayoutWithBreadcrumb.cshtml";
-	ViewData["PageTitle"] = @Model.Value("pageTitle");
-	ViewData["PageDescription"] = @Model.Value("pageDescription");
+    Layout = "_LayoutWithBreadcrumb.cshtml";
+    ViewData["PageTitle"] = "News & Articles";
+    <!--ViewData["PageTitle"] = Model.Value("pageTitle");-->
+    ViewData["PageDescription"] = Model.Value("pageDescription");
+    var userService = UserService;
+    var image = Model.Value<IPublishedContent>("articleImage");
 }
+
+<!-- the-news-article -->
+<section class="the-news-article">
+    <div class="container">
+        <div>
+            <p class="font-dm-lg-heading heading">@Model.Value("pageTitle")</p>
+            <div class="article-info">
+                <span class="date">@Model.CreateDate.ToString("MMM dd, yyyy")</span>
+                <div class="bullet"></div>
+                <span class="category">@Model.Value("articleCategory")</span>
+                <div class="bullet"></div>
+                <span>@Model.CreatorName(UserService)</span>
+            </div>
+        </div>
+
+        <div class="the-news-article-grid">
+            <!-- article-text -->
+            <div class="article-text">
+                <div class="img-holder">
+                    <img src="@image.Url()" />
+                </div>
+                <div class="text-holder">
+                    <p class="font-grey">
+                        @Model.Value("articleContent")
+                    </p>
+                </div>
+                <div class="tags-holder">
+                    @foreach (var tag in Model.Value<IEnumerable<string>>("articleTags"))
+                    {
+                        <p class="tag">@tag</p>
+                    }
+                </div>
+            </div>
+            <!-- recent-post-and-search -->
+            <div class="recent-post-and-search">
+                <!-- search-input -->
+                <div class="search-input">
+                    <input type="search" placeholder="Type to search..." />
+                    <i class="fa-regular fa-magnifying-glass"></i>
+                </div>
+                <!-- recent-posts -->
+                <div class="recent-posts">
+                    <div class="post-heading-holder">
+                        <p class="font-dm-sm-heading">Recent Posts (hard coded)</p>
+                        <hr>
+                    </div>
+                    <div class="article-post">
+                        <a href="#" class="article-title">How To Blow Through Capital At An Incredible
+                            Rate</a>
+                        <p class="date">Jan 14, 2020</p>
+                        <hr>
+                    </div>
+                    <div class="article-post">
+                        <a href="#" class="article-title">Design Studios That Everyone Should Know
+                            About?</a>
+                        <p class="date">Jan 14, 2020</p>
+                        <hr>
+                    </div>
+                    <div class="article-post">
+                        <a href="#" class="article-title">How did we get 1M+ visitors in 30 days without
+                            anything!</a>
+                        <p class="date">Jan 14, 2020</p>
+                        <hr>
+                    </div>
+                    <div class="article-post">
+                        <a href="#" class="article-title">Figma On Figma: How We Built Our Website Design
+                            System</a>
+                        <p class="date">Jan 14, 2020</p>
+                    </div>
+                </div>
+                <!-- categories -->
+                <div class="categories">
+                    <div class="categories-heading-holder">
+                        <p class="font-dm-sm-heading">Categories (hard coded)</p>
+                        <hr>
+                    </div>
+                    <div class="category-post">
+                        <a href="#" class="category">Technology</a><span>&nbsp;-&nbsp;</span>
+                        <p class="qty">20 Posts</p>
+                    </div>
+                    <div class="category-post">
+                        <a href="#" class="category">Freelancing</a><span>&nbsp;-&nbsp;</span>
+                        <p class="qty">07 Posts</p>
+                    </div>
+                    <div class="category-post">
+                        <a href="#" class="category">Writing</a><span>&nbsp;-&nbsp;</span>
+                        <p class="qty">16 Posts</p>
+                    </div>
+                    <div class="category-post">
+                        <a href="#" class="category">Marketing</a><span>&nbsp;-&nbsp;</span>
+                        <p class="qty">11 Posts</p>
+                    </div>
+                    <div class="category-post">
+                        <a href="#" class="category">Business</a><span>&nbsp;-&nbsp;</span>
+                        <p class="qty">35 Posts</p>
+                    </div>
+                    <div class="category-post">
+                        <a href="#" class="category">Education</a><span>&nbsp;-&nbsp;</span>
+                        <p class="qty">14 Posts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

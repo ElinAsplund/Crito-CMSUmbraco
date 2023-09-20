@@ -3,7 +3,6 @@
 @using Umbraco.Extensions
 @inject IPublishedUrlProvider PublishedUrlProvider
 
-
 @{ 
     var selection = Model.Ancestors().ToArray(); 
 }
@@ -20,7 +19,7 @@
                 }
                 <span>@Model.Name</span>
             </div>
-            <h1>@Model.Value("breadcrumbTitle")</h1>
+            <h1>@ViewData["PageTitle"]</h1>
         </div>
         <img src="~/images/graphics/background-lines.svg" />
     </section>
