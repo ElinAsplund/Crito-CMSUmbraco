@@ -2,10 +2,10 @@
 @using Umbraco.Cms.Core.Models.PublishedContent;
 
 @{
-    var selection = Umbraco.Content(Guid.Parse("32d4b0de-c378-4897-833d-5df91bf562bb"))
-        .ChildrenOfType("ourTeamDetailPage")
+    var selection = Umbraco.Content(Guid.Parse("32d4b0de-c378-4897-833d-5df91bf562bb"))?
+        .ChildrenOfType("ourTeamDetailPage")?
         .Where(x => x.IsVisible())
-        .OrderByDescending(x => x.CreateDate).ToList();
+        .OrderBy(x => x.CreateDate).ToList();
 
     var itemsPerSlide = 4;
     var itemsTotal = selection?.Count ?? 0;
@@ -31,33 +31,35 @@
 
             <!-- carousel-inner -->
             <div class="carousel-inner">
-                <!-- this part, with help from Sara Lindström -->
-                @for (int i = 1; i <= amoutOfSlides+1; i++ )
+                <!-- START, with help from Sara Lindström -->
+                @if(selection != null)
                 {
-                    <div class="carousel-item @(i == 1 ? "active": "")">
-                        <div class="our-team-grid">
-                            @foreach (var item in selection?.Skip((i - 1) * itemsPerSlide).Take(itemsPerSlide))
-                    	    {
-                    	        var url = item.Url();
-                    	        var name = item.Name();
-                    	        var jobTitle = item.Value("teamWorkerJobTitle");
-	            	            var image = item.Value<IPublishedContent>("teamWorkerImage");
+                    for (int i = 0; i <= amoutOfSlides; i++ )
+                    {
+                        <div class="carousel-item @(i == 0 ? "active": "")">
+                            <div class="our-team-grid">
+                                @foreach (var item in selection.Skip(i * itemsPerSlide).Take(itemsPerSlide))
+                    	        {
+                    	            var url = item.Url();
+                    	            var name = item.Name();
+                    	            var jobTitle = item.Value("teamWorkerJobTitle");
+	            	                var image = item.Value<IPublishedContent>("teamWorkerImage");
                     		
-                                <div class="team-card">
-                                    <a href="@url">
-                                        <div class="img-holder">
-                                            <img
-                                                src="@image.Url()" />
-                                        </div>
-                                        <h3 class="font-dm-sm-heading">@name</h3>
-                                        <p class="font-grey">@jobTitle</p>
-                                    </a>
-                                </div>
-                    	    }
+                                    <div class="team-card">
+                                        <a href="@url">
+                                            <div class="img-holder">
+                                                <img src="@image?.Url()" />
+                                            </div>
+                                            <h3 class="font-dm-sm-heading">@name</h3>
+                                            <p class="font-grey">@jobTitle</p>
+                                        </a>
+                                    </div>
+                    	        }
+                            </div>
                         </div>
-                    </div>
+                    }
                 }
-                <!-- this part, with help from Sara Lindström -->
+                <!-- END, with help from Sara Lindström -->
             </div>
 
             <!-- carousel-indicators -->
