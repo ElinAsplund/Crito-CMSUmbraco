@@ -8,12 +8,8 @@
         .OrderByDescending(x => x.CreateDate).ToList();
 
     var itemsPerSlide = 4;
-    var slideNumber = 1;
     var itemsTotal = selection?.Count ?? 0;
     var amoutOfSlides = Math.Ceiling((decimal)itemsTotal / itemsPerSlide) - 1;
-    var itemsOnSlide = selection?.Skip((slideNumber - 1) * itemsPerSlide).Take(itemsPerSlide);
-    //var pagedItems = selection?.Skip((pageNumber - 1) * itemsPerPage).Take(itemsPerPage);
-
 }
 
 <!-- our-team-carousel -->
@@ -35,123 +31,37 @@
 
             <!-- carousel-inner -->
             <div class="carousel-inner">
-                <!-- slide 1 -->
-                <div class="carousel-item active">
-                    <div class="our-team-grid">
-                        
-                    	@foreach (var item in selection)
-                    	{
-                    	    var url = item.Url();
-                    	    var name = item.Name();
-                    	    var jobTitle = item.Value("teamWorkerJobTitle");
-	            	        var image = item.Value<IPublishedContent>("teamWorkerImage");
+                <!-- this part, with help from Sara Lindström -->
+                @for (int i = 1; i <= amoutOfSlides+1; i++ )
+                {
+                    <div class="carousel-item @(i == 1 ? "active": "")">
+                        <div class="our-team-grid">
+                            @foreach (var item in selection?.Skip((i - 1) * itemsPerSlide).Take(itemsPerSlide))
+                    	    {
+                    	        var url = item.Url();
+                    	        var name = item.Name();
+                    	        var jobTitle = item.Value("teamWorkerJobTitle");
+	            	            var image = item.Value<IPublishedContent>("teamWorkerImage");
                     		
-                            <div class="team-card">
-                                <a href="@url">
-                                    <div class="img-holder">
-                                        <img
-                                            src="@image.Url()" />
-                                    </div>
-                                    <h3 class="font-dm-sm-heading">@name</h3>
-                                    <p class="font-grey">@jobTitle</p>
-                                </a>
-                            </div>
-                    	}
-                    </div>
-                </div>
-                <!-- slide 2 -->
-                <div class="carousel-item">
-                    <div class="our-team-grid">
-                        <div class="team-card">
-                            <a href="#">
-                                <div class="img-holder">
-                                    <img
-                                        src="./images/pictures/christina-wocintechchat-com-SJvDxw0azqw-unsplash.jpg" />
+                                <div class="team-card">
+                                    <a href="@url">
+                                        <div class="img-holder">
+                                            <img
+                                                src="@image.Url()" />
+                                        </div>
+                                        <h3 class="font-dm-sm-heading">@name</h3>
+                                        <p class="font-grey">@jobTitle</p>
+                                    </a>
                                 </div>
-                                <h3 class="font-dm-sm-heading">Kristine Palmer</h3>
-                                <p class="font-grey">Chef Operation Officer</p>
-                            </a>
-                        </div>
-                        <div class="team-card">
-                            <a href="#">
-                                <div class="img-holder">
-                                    <img src="./images/pictures/itay-verchik-6ZKGBzrDd3I-unsplash.jpg" />
-                                </div>
-                                <h3 class="font-dm-sm-heading">Mark Aubri</h3>
-                                <p class="font-grey">Senior Consultant</p>
-                            </a>
-                        </div>
-                        <div class="team-card">
-                            <a href="#">
-                                <div class="img-holder">
-                                    <img
-                                        src="./images/pictures/christina-wocintechchat-com-Zpzf7TLj_gA-unsplash.jpg" />
-                                </div>
-                                <h3 class="font-dm-sm-heading">Kimberly Hansen</h3>
-                                <p class="font-grey">Senior Consultant</p>
-                            </a>
-                        </div>
-                        <div class="team-card">
-                            <a href="#">
-                                <div class="img-holder">
-                                    <img
-                                        src="./images/pictures/the-connected-narrative-N8lRH2uxih4-unsplash.jpg" />
-                                </div>
-                                <h3 class="font-dm-sm-heading">Justin Willoman</h3>
-                                <p class="font-grey">Senior Tech Consultant</p>
-                            </a>
+                    	    }
                         </div>
                     </div>
-                </div>
-                <!-- slide 3 -->
-                <div class="carousel-item">
-                    <div class="our-team-grid">
-                        <div class="team-card">
-                            <a href="#">
-                                <div class="img-holder">
-                                    <img
-                                        src="./images/pictures/christina-wocintechchat-com-SJvDxw0azqw-unsplash.jpg" />
-                                </div>
-                                <h3 class="font-dm-sm-heading">Kristine Palmer</h3>
-                                <p class="font-grey">Chef Operation Officer</p>
-                            </a>
-                        </div>
-                        <div class="team-card">
-                            <a href="#">
-                                <div class="img-holder">
-                                    <img src="./images/pictures/itay-verchik-6ZKGBzrDd3I-unsplash.jpg" />
-                                </div>
-                                <h3 class="font-dm-sm-heading">Mark Aubri</h3>
-                                <p class="font-grey">Senior Consultant</p>
-                            </a>
-                        </div>
-                        <div class="team-card">
-                            <a href="#">
-                                <div class="img-holder">
-                                    <img
-                                        src="./images/pictures/christina-wocintechchat-com-Zpzf7TLj_gA-unsplash.jpg" />
-                                </div>
-                                <h3 class="font-dm-sm-heading">Kimberly Hansen</h3>
-                                <p class="font-grey">Senior Consultant</p>
-                            </a>
-                        </div>
-                        <div class="team-card">
-                            <a href="#">
-                                <div class="img-holder">
-                                    <img
-                                        src="./images/pictures/the-connected-narrative-N8lRH2uxih4-unsplash.jpg" />
-                                </div>
-                                <h3 class="font-dm-sm-heading">Justin Willoman</h3>
-                                <p class="font-grey">Senior Tech Consultant</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                }
+                <!-- this part, with help from Sara Lindström -->
             </div>
 
             <!-- carousel-indicators -->
             <div class="carousel-indicators">
-                
                 @for (int i = 0; i <= amoutOfSlides; i++)
                 {
                     if( i == 0)
@@ -163,16 +73,6 @@
                         <div type="button" data-bs-target="#carouselOurTeam" data-bs-slide-to="@i" aria-current="true" aria-label="Slide @i"></div>
                     }
                 }
-                
-                
-                <!--<div type="button" data-bs-target="#carouselOurTeam" data-bs-slide-to="0" class="active"-->
-                <!--    aria-current="true" aria-label="Slide 1"></div>-->
-                <!--<div type="button" data-bs-target="#carouselOurTeam" data-bs-slide-to="1"-->
-                <!--    aria-label="Slide 2">-->
-                <!--</div>-->
-                <!--<div type="button" data-bs-target="#carouselOurTeam" data-bs-slide-to="2"-->
-                <!--    aria-label="Slide 3">-->
-                <!--</div>-->
             </div>
         </div>
     </div>
