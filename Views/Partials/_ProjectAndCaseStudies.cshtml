@@ -1,0 +1,46 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+
+@{
+	var selection = Umbraco.Content(Guid.Parse("23cf5f2e-694a-4ce4-8768-3604bdf7e49b"))?
+    .ChildrenOfType("articleDetailPage")?
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate)
+    .Take(4);
+}
+
+<!-- project-and-case -->
+<section class="project-and-case">
+    <div class="container">
+        <p class="heading-sm">@Model.Value("projectAndCaseStudiesSectionTitle")</p>
+        <h1 class="font-dm-lg-heading">@Model.Value("projectAndCaseStudiesHeading")</h1>
+        <div class="project-and-case-grid">
+
+            @if (selection != null)
+            {
+        	    foreach (var item in selection)
+                {
+                    var url = item.Url();
+    	            var image = item.Value<IPublishedContent>("articleImage");
+                    var heading = item.Name;
+
+                    <div class="project-card">
+                        <a href="@url">
+                            <div class="img-holder">
+                                <img src="@image?.Url()" />
+                            </div>
+                            <h3 class="font-dm-sm-heading">@heading</h3>
+                            <hr>
+                            <div class="d-flex justify-content-end">
+                                <p>Read More <i class="fa-regular fa-arrow-up-right"></i></p>
+                            </div>
+                        </a>
+                    </div>
+                }                
+            }
+        </div>
+        <a href="@Model.Value("projectAndCaseStudiesButtonUrl")">
+            <button class="black-btn">@Model.Value("projectAndCaseStudiesButtonText")<i class="fa-regular fa-arrow-up-right"></i></button>
+        </a>
+    </div>
+</section>

@@ -1,0 +1,18 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.OurTeamDetailPage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models.PublishedContent;
+
+@{
+	Layout = "_LayoutWithBreadcrumb.cshtml";
+	ViewData["PageTitle"] = Model.Value("pageTitle");
+    var image = Model.Value<IPublishedContent>("teamWorkerImage");
+}
+
+<div class="container my-5">
+    <div class="d-flex align-items-center flex-column">
+        <img src="@image?.Url()" style="width:250px; " />
+        <h1 class="mt-3">@Model.Value("teamWorkerName")</h1>
+        <p>@Model.Value("teamWorkerJobTitle")</p>
+    </div>
+</div>

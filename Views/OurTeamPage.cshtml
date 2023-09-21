@@ -1,0 +1,24 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.OurTeamPage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "_LayoutWithBreadcrumb.cshtml";
+	ViewData["PageTitle"] = "Our Team";
+	var selection = Umbraco.Content(Guid.Parse("32d4b0de-c378-4897-833d-5df91bf562bb"))
+        .ChildrenOfType("ourTeamDetailPage")
+        .Where(x => x.IsVisible())
+        .OrderByDescending(x => x.CreateDate);
+}
+
+
+<div class="container">
+    <ul>
+    	@foreach (var item in selection)
+    	{
+    		<li>
+    			<a href="@item.Url()">@item.Name()</a>
+    		</li>
+    	}
+    </ul>
+</div>
+

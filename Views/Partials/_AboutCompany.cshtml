@@ -1,0 +1,44 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Models.PublishedContent;
+
+@{
+    var image = Model.Value<IPublishedContent>("aboutCompanyImage");
+}
+
+<!-- about-company -->
+<section class="about-company">
+    <div class="container">
+        <div class="about-company-grid">
+            <div class="images-side">
+                <div class="img-holder">
+                    <img src="@image?.Url()" />
+                    <div class="text-box">
+                        @Model.Value("aboutCompanyQuoteBox")
+                    </div>
+                    <img src="~/images/graphics/background-wavy-line-white.svg" class="wavy-line" />
+                </div>
+            </div>
+            <div class="text-side">
+                <p class="heading-sm">@Model.Value("aboutCompanySectionTitle")</p>
+                <h1 class="font-dm-lg-heading">@Model.Value("aboutCompanyHeading")</h1>
+                <div class="mb-5">@Model.Value("aboutCompanyContent")</div>
+                <div class="d-flex">
+                    <a href="@Model.Value("aboutCompanyLearnMoreButtonUrl")">
+                        <button class="black-btn">
+                            Learn More<i class="fa-regular fa-arrow-up-right"></i>
+                        </button>
+                    </a>
+                    @if (Model.Value("aboutCompanyPlayButtonText") != "" && Model.Value("aboutCompanyPlayButtonUrl") != "")
+                    {
+                        <a href="@Model.Value("aboutCompanyPlayButtonUrl")" class="d-flex align-items-center">
+                            <button class="round-btn">
+                                <i class="fa-solid fa-play"></i>
+                            </button>
+                            <p>@Model.Value("aboutCompanyPlayButtonText")</p>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -32,6 +32,7 @@
   height: 180px;
   bottom: 40px;
   left: -50px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -847,6 +848,7 @@ footer .footer-bottom .social-media a i {
 }
 .project-and-case .container .project-and-case-grid .project-card h3 {
   margin-top: 1rem;
+  min-height: 55px;
 }
 .project-and-case .container .project-and-case-grid .project-card:hover p {
   text-decoration: underline;
