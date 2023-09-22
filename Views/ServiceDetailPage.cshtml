@@ -1,12 +1,13 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ServicePage>
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ServiceDetailPage>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
 	Layout = "_LayoutWithBreadcrumb.cshtml";
-	ViewData["PageTitle"] = "Our Service";
+	ViewData["PageTitle"] = Model.Value("pageTitle");
 }
+
 <div class="container">
     <div class="d-flex justify-content-center my-5">
-        <a href="/service/consulting">Consulting</a>
+        <h1>Info about consulting</h1>
     </div>
 </div>

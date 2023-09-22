@@ -5,3 +5,7 @@
 	Layout = "_LayoutWithBreadcrumb.cshtml";
 	ViewData["PageTitle"]= "Let's Connect";
 }
+
+@await Html.PartialAsync("_ContactInfoBoxes")
+@await Html.PartialAsync("_ContactForm")
+@await Html.PartialAsync("_Map")

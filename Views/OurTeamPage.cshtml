@@ -12,13 +12,15 @@
 
 
 <div class="container">
-    <ul>
-    	@foreach (var item in selection)
-    	{
-    		<li>
-    			<a href="@item.Url()">@item.Name()</a>
-    		</li>
-    	}
-    </ul>
+    <div class="d-flex justify-content-center my-5">
+        <ul class="list-inline text-center">
+        	@foreach (var item in selection)
+        	{
+        		<li class="my-1">
+        			<a href="@item.Url()">@item.Name()</a>
+        		</li>
+        	}
+        </ul>
+    </div>
 </div>
 
