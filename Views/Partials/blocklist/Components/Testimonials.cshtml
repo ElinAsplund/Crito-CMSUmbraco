@@ -1,0 +1,45 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+    var content = (ContentModels.Testimonials)Model.Content;
+
+    int starRating = 0;
+
+    if (content.HasValue("testimonialStarRating"))
+    {
+        starRating = content.Value<int>("testimonialStarRating");
+    }
+
+    var image = content.Value<IPublishedContent>("testimonialReviewerImage");
+    var jobTitle = @content.Value("testimonialReviewerJobTitle")?.ToString();
+    var company = @content.Value("testimonialReviewerCompany")?.ToString();
+}
+
+
+<div class="testimonial-card">
+    <div class="star-holder">
+        @for(var i = 1 ; i <= starRating ; i++){
+            <i class="fa-solid fa-star"></i>
+        }
+    </div>
+    <p class="review-text">"@content.Value("testimonialReviewContent")"</p>
+    <div class="d-flex">
+        <img src="@image.Url()" style="height: 70px; width: 70px;"/>
+        <div>
+            <p class="name font-dm-sm-heading">@content.Value("testimonialReviewerName")</p>
+                @if (string.IsNullOrWhiteSpace(jobTitle))
+                {
+                    <p class="professional-title">@Html.Raw("@")@company</p>
+                }
+                else if (string.IsNullOrWhiteSpace(company))
+                {
+                    <p class="professional-title">@jobTitle</p>
+                }
+                else 
+                {
+                    <p class="professional-title">@jobTitle, @Html.Raw("@")@company</p>
+                }
+        </div>
+    </div>
+</div>

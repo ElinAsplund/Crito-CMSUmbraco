@@ -891,34 +891,35 @@ footer .footer-bottom .social-media a i {
 .testimonial .container h2 {
   margin-bottom: 80px;
 }
-.testimonial .container .testimonial-grid {
+.testimonial .container .testimonial-grid .umb-block-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
   gap: 80px;
   margin-bottom: 80px;
 }
-.testimonial .container .testimonial-grid .testimonial-card .star-holder {
+.testimonial .container .testimonial-grid .umb-block-list .testimonial-card .star-holder {
   color: #F94D1C;
   margin-bottom: 1.5rem;
 }
-.testimonial .container .testimonial-grid .testimonial-card .review-text {
+.testimonial .container .testimonial-grid .umb-block-list .testimonial-card .review-text {
   font-style: italic;
   font-weight: 500;
   margin-bottom: 1.5rem;
 }
-.testimonial .container .testimonial-grid .testimonial-card img {
+.testimonial .container .testimonial-grid .umb-block-list .testimonial-card img {
   margin-right: 1rem;
 }
-.testimonial .container .testimonial-grid .testimonial-card .name {
+.testimonial .container .testimonial-grid .umb-block-list .testimonial-card .name {
   font-family: "DM Sans", sans-serif;
 }
-.testimonial .container .testimonial-grid .testimonial-card .professional-title {
+.testimonial .container .testimonial-grid .umb-block-list .testimonial-card .professional-title {
   color: #F94D1C;
 }
 
 .the-news-article {
   padding: 120px 0;
+  flex: 1;
 }
 .the-news-article .container div .heading {
   width: 55%;
@@ -1103,6 +1104,7 @@ footer .footer-bottom .social-media a i {
 
 .the-news {
   padding: 120px 0;
+  flex: 1;
 }
 .the-news .container h2 {
   margin: 0;
@@ -1203,6 +1205,8 @@ body {
 
 main {
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 p {

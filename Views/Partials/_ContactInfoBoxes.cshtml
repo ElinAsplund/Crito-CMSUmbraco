@@ -3,30 +3,29 @@
 <!-- contact-info-boxes -->
 <section class="contact-info-boxes">
     <div class="container">
-        <h1>HARDCODED</h1>
         <div class="info-box-holder">
             <div class="info-box">
                 <p class="contact-icon"><i class="fa-solid fa-location-dot"></i></p>
                 <div>
                     <p class="prompt font-dm-sm-heading">Visit Us</p>
-                    <p class="info">Sveavägen 31<br>
-                        111 34 STOCKHOLM</p>
+                    <p class="info">@Model.Value("contactInformationStreetName")<br>
+                        @Model.Value("contactInformationPostalCode") @Model.Value("contactInformationCity")</p>
                 </div>
             </div>
             <div class="info-box">
                 <p class="contact-icon"><i class="fa-solid fa-phone"></i></p>
                 <div>
                     <p class="prompt font-dm-sm-heading">Call Us</p>
-                    <p class="info">+46 (8) 121 470 50<br>
-                        +46 (8) 121 470 51</p>
+                    <p class="info">@Model.Value("contactInformationPhoneNumber1")<br>
+                        @Model.Value("contactInformationPhoneNumber1")</p>
                 </div>
             </div>
             <div class="info-box">
                 <p class="contact-icon"><i class="fa-solid fa-envelope"></i></p>
                 <div>
                     <p class="prompt font-dm-sm-heading">Email Us</p>
-                    <p class="info">info@crito.com<br>
-                        support@crito.com</p>
+                    <p class="info">@Model.Value("contactInformationEmail1")<br>
+                        @Model.Value("contactInformationEmail2")</p>
                 </div>
             </div>
         </div>

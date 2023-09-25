@@ -1,17 +1,34 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Models.PublishedContent;
+
+@{
+    var selection = Umbraco.Content(Guid.Parse("23cf5f2e-694a-4ce4-8768-3604bdf7e49b"))?
+        .Children()
+        .Where(x => x.IsVisible())
+        .OrderByDescending(x => x.CreateDate).ToList();
+
+    var itemsPerSlide = 3;
+    var itemsTotal = selection?.Count ?? 0;
+    var amoutOfSlides = Math.Ceiling((decimal)itemsTotal / itemsPerSlide) - 1;
+
+    var sectionTitle = Model.Value("articleAndNewsCarouselSectionTitle") == null ? "Article & News" : Model.Value("articleAndNewsCarouselSectionTitle")!.ToString();
+    var heading = Model.Value("articleAndNewsCarouselHeading") == null ? "Get Every Single Articles & News" : Model.Value("articleAndNewsCarouselHeading")!.ToString();
+    var buttonText = Model.Value("articleAndNewsCarouselButtonText") == null ? "Browse Articles" : Model.Value("articleAndNewsCarouselButtonText")!.ToString();
+    var buttonUrl = Model.Value("articleAndNewsCarouselButtonUrl") == null ? "/news" : Model.Value("articleAndNewsCarouselButtonUrl")!.ToString();
+}
+
 
 <!-- article-and-news-carousel -->
 <section class="article-and-news-carousel">
     <div class="container">
-        <h1>HARDCODED</h1>
         <div class="d-flex justify-content-between margin">
             <div>
-                <p class="heading-sm">Article & News</p>
-                <h2 class="font-dm-lg-heading">Get Every Single Articles & News</h2>
+                <p class="heading-sm">@sectionTitle</p>
+                <h2 class="font-dm-lg-heading">@heading</h2>
             </div>
             <div class="d-flex justify-content-end align-items-end"">
-                <a href=" #">
-                    <button class=" yellow-btn">Browse Articles <i
+                <a href=" @buttonUrl">
+                    <button class=" yellow-btn">@buttonText <i
                         class="fa-regular fa-arrow-up-right"></i></button>
                 </a>
             </div>
@@ -21,189 +38,56 @@
 
             <!-- carousel-inner -->
             <div class="carousel-inner">
-                <!-- slide 1 -->
-                <div class="carousel-item active">
-                    <div class="article-and-news-grid">
-                        <div class="article-and-news-card">
-                            <a href="#">
-                                <div class="img-holder">
-                                    <img
-                                        src="/images/pictures/linkedin-sales-solutions-Mis5fyJi7Q0-unsplash.jpg" />
-                                    <div class="square">
-                                        <p class="date"><span>25</span><br>Mar</p>
+                @if(selection != null)
+                {
+                    for (int i = 0; i <= amoutOfSlides; i++ )
+                    {
+                        <div class="carousel-item @(i == 0 ? "active" : "")">
+                            <div class="article-and-news-grid">
+                                @foreach (var item in selection.Skip(i * itemsPerSlide).Take(itemsPerSlide))
+                    	        {
+                    	            var url = item.Url();
+                    	            var name = item.Name();
+	            	                var image = item.Value<IPublishedContent>("articleImage");
+	            	                var date = item.CreateDate;
+	            	                var category = item.Value("articleCategory");
+	            	                var preamble = item.Value("articlePreamble");
+                    		
+                                    
+                                    <div class="article-and-news-card">
+                                        <a href="@url">
+                                            <div class="img-holder">
+                                                <img
+                                                    src="@image?.Url()" />
+                                                <div class="square">
+                                                    <p class="date"><span>@date.ToString("dd")</span><br>@date.ToString("MMM")</p>
+                                                </div>
+                                            </div>
+                                            <p class="font-grey topic">@category</p>
+                                            <h3 class="font-dm-sm-heading">@name</h3>
+                                            <p class="font-grey description">@preamble</p>
+                                        </a>
                                     </div>
-                                </div>
-                                <p class="font-grey topic">Business</p>
-                                <h3 class="font-dm-sm-heading">How To Use Digitalization In The Classroom
-                                </h3>
-                                <p class="font-grey description">Lorem, ipsum dolor sit amet consectetur
-                                    adipisicing
-                                    elit.
-                                    Architecto sed hic libero.</p>
-                            </a>
+                    	        }
+                            </div>
                         </div>
-                        <div class="article-and-news-card">
-                            <a href="#">
-                                <div class="img-holder">
-                                    <img
-                                        src="~/images/pictures/emiliano-vittoriosi-vEN1bsdSjxM-unsplash.jpg" />
-                                    <div class="square">
-                                        <p class="date"><span>17</span><br>Mar</p>
-                                    </div>
-                                </div>
-                                <p class="font-grey topic">Business</p>
-                                <h3 class="font-dm-sm-heading">How To Implement Chat GPT In Your Projects
-                                </h3>
-                                <p class="font-grey description">Lorem, ipsum dolor sit amet consectetur
-                                    adipisicing
-                                    elit.
-                                    Architecto sed hic libero.</p>
-                            </a>
-                        </div>
-                        <div class="article-and-news-card">
-                            <a href="#">
-                                <div class="img-holder">
-                                    <img src="~/images/pictures/kobu-agency-ipARHaxETRk-unsplash.jpg" />
-                                    <div class="square">
-                                        <p class="date"><span>13</span><br>Mar</p>
-                                    </div>
-                                </div>
-                                <p class="font-grey topic">Business</p>
-                                <h3 class="font-dm-sm-heading">The Guide To Support Modern CSS Design</h3>
-                                <p class="font-grey description">Lorem, ipsum dolor sit amet consectetur
-                                    adipisicing
-                                    elit.
-                                    Architecto sed hic libero.</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- slide 2 -->
-                <div class="carousel-item">
-                    <div class="article-and-news-grid">
-                        <div class="article-and-news-card">
-                            <a href="#">
-                                <div class="img-holder">
-                                    <img
-                                        src="~/images/pictures/linkedin-sales-solutions-Mis5fyJi7Q0-unsplash.jpg" />
-                                    <div class="square">
-                                        <p class="date"><span>25</span><br>Mar</p>
-                                    </div>
-                                </div>
-                                <p class="font-grey topic">Business</p>
-                                <h3 class="font-dm-sm-heading">How To Use Digitalization In The Classroom
-                                </h3>
-                                <p class="font-grey description">Lorem, ipsum dolor sit amet consectetur
-                                    adipisicing
-                                    elit.
-                                    Architecto sed hic libero.</p>
-                            </a>
-                        </div>
-                        <div class="article-and-news-card">
-                            <a href="#">
-                                <div class="img-holder">
-                                    <img
-                                        src="~/images/pictures/emiliano-vittoriosi-vEN1bsdSjxM-unsplash.jpg" />
-                                    <div class="square">
-                                        <p class="date"><span>17</span><br>Mar</p>
-                                    </div>
-                                </div>
-                                <p class="font-grey topic">Business</p>
-                                <h3 class="font-dm-sm-heading">How To Implement Chat GPT In Your Projects
-                                </h3>
-                                <p class="font-grey description">Lorem, ipsum dolor sit amet consectetur
-                                    adipisicing
-                                    elit.
-                                    Architecto sed hic libero.</p>
-                            </a>
-                        </div>
-                        <div class="article-and-news-card">
-                            <a href="#">
-                                <div class="img-holder">
-                                    <img src="~/images/pictures/kobu-agency-ipARHaxETRk-unsplash.jpg" />
-                                    <div class="square">
-                                        <p class="date"><span>13</span><br>Mar</p>
-                                    </div>
-                                </div>
-                                <p class="font-grey topic">Business</p>
-                                <h3 class="font-dm-sm-heading">The Guide To Support Modern CSS Design</h3>
-                                <p class="font-grey description">Lorem, ipsum dolor sit amet consectetur
-                                    adipisicing
-                                    elit.
-                                    Architecto sed hic libero.</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- slide 3 -->
-                <div class="carousel-item">
-                    <div class="article-and-news-grid">
-                        <div class="article-and-news-card">
-                            <a href="#">
-                                <div class="img-holder">
-                                    <img
-                                        src="~/images/pictures/linkedin-sales-solutions-Mis5fyJi7Q0-unsplash.jpg" />
-                                    <div class="square">
-                                        <p class="date"><span>25</span><br>Mar</p>
-                                    </div>
-                                </div>
-                                <p class="font-grey topic">Business</p>
-                                <h3 class="font-dm-sm-heading">How To Use Digitalization In The Classroom
-                                </h3>
-                                <p class="font-grey description">Lorem, ipsum dolor sit amet consectetur
-                                    adipisicing
-                                    elit.
-                                    Architecto sed hic libero.</p>
-                            </a>
-                        </div>
-                        <div class="article-and-news-card">
-                            <a href="#">
-                                <div class="img-holder">
-                                    <img
-                                        src="~/images/pictures/emiliano-vittoriosi-vEN1bsdSjxM-unsplash.jpg" />
-                                    <div class="square">
-                                        <p class="date"><span>17</span><br>Mar</p>
-                                    </div>
-                                </div>
-                                <p class="font-grey topic">Business</p>
-                                <h3 class="font-dm-sm-heading">How To Implement Chat GPT In Your Projects
-                                </h3>
-                                <p class="font-grey description">Lorem, ipsum dolor sit amet consectetur
-                                    adipisicing
-                                    elit.
-                                    Architecto sed hic libero.</p>
-                            </a>
-                        </div>
-                        <div class="article-and-news-card">
-                            <a href="#">
-                                <div class="img-holder">
-                                    <img src="~/images/pictures/kobu-agency-ipARHaxETRk-unsplash.jpg" />
-                                    <div class="square">
-                                        <p class="date"><span>13</span><br>Mar</p>
-                                    </div>
-                                </div>
-                                <p class="font-grey topic">Business</p>
-                                <h3 class="font-dm-sm-heading">The Guide To Support Modern CSS Design</h3>
-                                <p class="font-grey description">Lorem, ipsum dolor sit amet consectetur
-                                    adipisicing
-                                    elit.
-                                    Architecto sed hic libero.</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                    }
+                }
             </div>
 
             <!-- carousel-indicators -->
             <div class="carousel-indicators">
-                <div type="button" data-bs-target="#carouselArticleNews" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></div>
-                <div type="button" data-bs-target="#carouselArticleNews" data-bs-slide-to="1"
-                    aria-label="Slide 2">
-                </div>
-                <div type="button" data-bs-target="#carouselArticleNews" data-bs-slide-to="2"
-                    aria-label="Slide 3">
-                </div>
+                @for (int i = 0; i <= amoutOfSlides; i++)
+                {
+                    if( i == 0)
+                    {
+                        <div type="button" data-bs-target="#carouselArticleNews" data-bs-slide-to="@i" class="active" aria-current="true" aria-label="Slide @i"></div>
+                    }
+                    else
+                    {
+                        <div type="button" data-bs-target="#carouselArticleNews" data-bs-slide-to="@i" aria-current="true" aria-label="Slide @i"></div>
+                    }
+                }
             </div>
         </div>
     </div>
