@@ -11,8 +11,8 @@
     var itemsTotal = selection?.Count ?? 0;
     var amoutOfSlides = Math.Ceiling((decimal)itemsTotal / itemsPerSlide) - 1;
 
-    var sectionTitle = Model.Value("articleAndNewsCarouselSectionTitle") == null ? "Article & News" : Model.Value("articleAndNewsCarouselSectionTitle")!.ToString();
-    var heading = Model.Value("articleAndNewsCarouselHeading") == null ? "Get Every Single Articles & News" : Model.Value("articleAndNewsCarouselHeading")!.ToString();
+    var sectionTitle = Model.Value("articleAndNewsCarouselSectionTitle") == null ? "Article & News (Static)" : Model.Value("articleAndNewsCarouselSectionTitle")!.ToString();
+    var heading = Model.Value("articleAndNewsCarouselHeading") == null ? "Get Every Single Articles & News (Static)" : Model.Value("articleAndNewsCarouselHeading")!.ToString();
     var buttonText = Model.Value("articleAndNewsCarouselButtonText") == null ? "Browse Articles" : Model.Value("articleAndNewsCarouselButtonText")!.ToString();
     var buttonUrl = Model.Value("articleAndNewsCarouselButtonUrl") == null ? "/news" : Model.Value("articleAndNewsCarouselButtonUrl")!.ToString();
 }

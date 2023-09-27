@@ -1,24 +1,42 @@
-﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+﻿@using Crito.Models;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    var contactForm = new ContactForm();
+}
 
 <!-- contact-form -->
 <section class="contact-form">
     <div class="container">
         <h1>HARDCODED</h1>
-        <h1>NO VALIDATION</h1>
+        <h1>only "model" VALIDATION</h1>
         <div class="d-flex justify-content-center">
             <p class="font-dm-lg-heading">Leave us a message for any information.</p>
         </div>
-        <form>
+        @using (Html.BeginUmbracoForm("Index", "Contacts", FormMethod.Post, new { @novalidate = "novalidate", id = "contact-form" }))
+        {
+            <div asp-validation-summary="ModelOnly" class="text-danger ms-4 mb-5 no-bullets text-center"></div>
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="text-success ms-4 mb-5 no-bullets text-center">@TempData["SuccessMessage"]</div>
+            }
+            
             <label hidden>Name*</label>
-            <input required type="text" placeholder="Name*">
+            <input asp-for="@contactForm.Name" required type="text" placeholder="Name*" class="mb-0">
+            <span asp-validation-for="@contactForm.Name" class="text-danger mb-3 ms-4 mt-1"></span>
+
             <label hidden>Email*</label>
-            <input required type="email" placeholder="Email*">
+            <input asp-for="@contactForm.Email" required type="email" placeholder="Email*" class="mb-0">
+            <span asp-validation-for="@contactForm.Email" class="text-danger mb-3 ms-4 mt-1"></span>
+
             <label hidden>Your Message*</label>
-            <textarea required placeholder="Your Message*"></textarea>
+            <textarea asp-for="@contactForm.Message" required placeholder="Your Message*" class="mb-0"></textarea>
+            <span asp-validation-for="@contactForm.Message" class="text-danger mb-3 ms-4 mt-1"></span>
+            
             <button type="submit" class="yellow-btn">
                 Send Message
                 <i class="fa-regular fa-arrow-up-right"></i>
             </button>
-        </form>
+        }
     </div>
 </section>

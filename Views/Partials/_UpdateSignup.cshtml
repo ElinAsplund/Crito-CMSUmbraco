@@ -1,18 +1,35 @@
-﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+﻿@using Crito.Models;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    var emailSignupForm = new EmailSignupForm();
+}
 
 <!-- news-update-signup -->
 <section class="news-update-signup">
     <div class="container">
-        <h1>NO VALIDATION</h1>
+        <h1>only "model" VALIDATION, started with JS</h1>
+       @* <button id="test-btn">klick!</button>*@
     </div>
     <div class="container">
         <p class="font-dm-lg-heading">Get News Updates By Signup</p>
-        <form>
+
+        @using (Html.BeginUmbracoForm("Index", "Home", FormMethod.Post, new { @novalidate = "novalidate", id = "email-signup-form", onsubmit = "validateTest(event)" }))
+        {
             <label hidden>E-mail</label>
-            <input type="email" required placeholder="username@domain.com" />
+            <input asp-for="@emailSignupForm.Email" type="email" required placeholder="username@domain.com" />
+
             <button type="submit" class="yellow-btn">Subscribe <i
-                    class="fa-regular fa-arrow-up-right"></i></button>
-        </form>
+                    class="fa-regular fa-arrow-up-right"></i></button>         
+            
+
+            <span asp-validation-for="@emailSignupForm.Email" class="text-danger mb-3 ms-4 mt-1"></span>
+            @*<div asp-validation-summary="ModelOnly" class="text-danger ms-4 mb-5 no-bullets text-center"></div>*@
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="text-success ms-4 mb-5 no-bullets text-center">@TempData["SuccessMessage"]</div>
+            }
+        }
     </div>
     <img src="~/images/graphics/background-wavy-lines.svg" />
 </section>

@@ -1357,6 +1357,14 @@ button.border-btn:hover {
   font-size: 45px;
 }
 
+.no-bullets ul {
+  margin: 0;
+  padding: 0;
+}
+.no-bullets ul li {
+  list-style: none;
+}
+
 .why-choose-us {
   padding: 80px 0 150px 0;
   position: relative;

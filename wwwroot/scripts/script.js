@@ -11,3 +11,16 @@ if (activePage === "/") {
         }
     });
 }
+
+//document.getElementById('test-btn').addEventListener('click', function () {
+//    console.log("click!");
+//});
+
+//Validation ContactForm
+
+
+//Validation EmailSignupForm
+function validateTest(e) {
+    e.preventDefault();
+    console.log("TEST");
+}
