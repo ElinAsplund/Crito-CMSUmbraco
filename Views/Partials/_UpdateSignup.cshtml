@@ -10,10 +10,10 @@
     <div class="container">
         <p class="font-dm-lg-heading">Get News Updates By Signup</p>
 
-        @using (Html.BeginUmbracoForm("Index", "Home", FormMethod.Post, new { @novalidate = "novalidate", onsubmit = "validateSignup(event)", id = "signup-email-form" }))
+        @using (Html.BeginUmbracoForm("Index", "Home", FormMethod.Post, new { @novalidate = "novalidate", onsubmit = "validateSignupForm(event)", id = "signup-email-form" }))
         {
             <label hidden>E-mail</label>
-            <input asp-for="@emailSignupForm.Email" type="email" id="signup-email-input" onkeyup="errorMessageEmail(event)" required placeholder="username@domain.com" />
+            <input asp-for="@emailSignupForm.Email" type="email" id="signup-email-input" onkeyup="errorMessageSignupEmail(event)" required placeholder="username@domain.com" />
 
             <button type="submit" class="yellow-btn">Subscribe <i
                     class="fa-regular fa-arrow-up-right"></i></button>

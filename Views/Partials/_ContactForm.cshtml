@@ -6,33 +6,38 @@
 }
 
 <!-- contact-form -->
-<section class="contact-form">
+<section class="contact-form" id="contact-form-section">
     <div class="container">
         <h1>HARDCODED</h1>
-        <h1>only "model" VALIDATION</h1>
         <div class="d-flex justify-content-center">
             <p class="font-dm-lg-heading">Leave us a message for any information.</p>
         </div>
-        @using (Html.BeginUmbracoForm("Index", "Contacts", FormMethod.Post, new { @novalidate = "novalidate", id = "contact-form" }))
+        @using (Html.BeginUmbracoForm("Index", "Contacts", FormMethod.Post, new { @novalidate = "novalidate", id = "contact-form", onsubmit = "validateContactForm(event)" }))
         {
             <div asp-validation-summary="ModelOnly" class="text-danger ms-4 mb-5 no-bullets text-center"></div>
             @if (TempData["SuccessMessage"] != null)
             {
-                <div class="text-success ms-4 mb-5 no-bullets text-center">@TempData["SuccessMessage"]</div>
+                <div class="text-success ms-4 mb-5 no-bullets text-center" id="contact-form-success">@TempData["SuccessMessage"]</div>
             }
             
             <label hidden>Name*</label>
-            <input asp-for="@contactForm.Name" required type="text" placeholder="Name*" class="mb-0">
-            <span asp-validation-for="@contactForm.Name" class="text-danger mb-3 ms-4 mt-1"></span>
+            <input asp-for="@contactForm.Name" required type="text" placeholder="Name*" id="contact-name-input" onkeyup="errorMessageContactName(event)" class="mb-0">
+            <span class="text-danger ms-4 mt-1" id="contact-name-error"></span>
+            <span asp-validation-for="@contactForm.Name" class="text-danger mb-3 ms-4"></span>
+
 
             <label hidden>Email*</label>
-            <input asp-for="@contactForm.Email" required type="email" placeholder="Email*" class="mb-0">
-            <span asp-validation-for="@contactForm.Email" class="text-danger mb-3 ms-4 mt-1"></span>
+            <input asp-for="@contactForm.Email" required type="email" placeholder="Email*" id="contact-email-input" onkeyup="errorMessageContactEmail(event)" class="mb-0">
+            <span class="text-danger ms-4 mt-1" id="contact-email-error"></span>
+            <span asp-validation-for="@contactForm.Email" class="text-danger mb-3 ms-4"></span>
+
 
             <label hidden>Your Message*</label>
-            <textarea asp-for="@contactForm.Message" required placeholder="Your Message*" class="mb-0"></textarea>
-            <span asp-validation-for="@contactForm.Message" class="text-danger mb-3 ms-4 mt-1"></span>
-            
+            <textarea asp-for="@contactForm.Message" required placeholder="Your Message*" id="contact-message-input" onkeyup="errorMessageContactMessage(event)" class="mb-0"></textarea>
+            <span class="text-danger ms-4 mt-1" id="contact-message-error"></span>
+            <span asp-validation-for="@contactForm.Message" class="text-danger mb-3 ms-4"></span>
+
+
             <button type="submit" class="yellow-btn">
                 Send Message
                 <i class="fa-regular fa-arrow-up-right"></i>

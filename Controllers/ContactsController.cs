@@ -18,7 +18,6 @@ namespace Crito.Controllers
 
         public IActionResult Index(ContactForm contactForm)
         {
-
             if (!ModelState.IsValid)
             {
                 TempData.Clear();
@@ -28,9 +27,12 @@ namespace Crito.Controllers
 
             contactForm.Created = DateTime.Now;
             ModelState.AddModelError("", "");
+
             TempData.Clear();
             TempData["SuccessMessage"] = "Your comment has now been sent!";
-            
+
+            ModelState.Clear();
+
             return CurrentUmbracoPage();
 
             //return LocalRedirect(contactForm.RedirectUrl ?? "/");
