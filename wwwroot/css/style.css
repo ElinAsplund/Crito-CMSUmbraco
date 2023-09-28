@@ -602,6 +602,7 @@ footer .footer-bottom .social-media a i {
   flex: 1;
 }
 .news-update-signup .container form {
+  position: relative;
   flex: 1;
   display: flex;
   align-items: center;
@@ -630,6 +631,11 @@ footer .footer-bottom .social-media a i {
   flex: 1;
   height: 100%;
   min-width: fit-content;
+}
+.news-update-signup .container form span {
+  position: absolute;
+  bottom: -2rem;
+  left: 4rem;
 }
 .news-update-signup img {
   position: absolute;

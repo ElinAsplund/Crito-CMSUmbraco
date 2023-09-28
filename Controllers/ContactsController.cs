@@ -27,6 +27,7 @@ namespace Crito.Controllers
             } 
 
             contactForm.Created = DateTime.Now;
+            ModelState.AddModelError("", "");
             TempData.Clear();
             TempData["SuccessMessage"] = "Your comment has now been sent!";
             

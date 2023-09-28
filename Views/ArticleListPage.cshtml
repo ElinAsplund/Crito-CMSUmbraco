@@ -7,7 +7,7 @@
     Layout = "_LayoutWithBreadcrumb.cshtml";
     ViewData["PageTitle"] = "News & Article";
 
-    var itemsPerPage = 6;
+    var itemsPerPage = 3;
     var pageNumber = 1;
 
     if (!int.TryParse(Context.Request.Query["page"], out pageNumber))

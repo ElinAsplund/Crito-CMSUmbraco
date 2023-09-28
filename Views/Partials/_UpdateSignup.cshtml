@@ -8,26 +8,21 @@
 <!-- news-update-signup -->
 <section class="news-update-signup">
     <div class="container">
-        <h1>only "model" VALIDATION, started with JS</h1>
-       @* <button id="test-btn">klick!</button>*@
-    </div>
-    <div class="container">
         <p class="font-dm-lg-heading">Get News Updates By Signup</p>
 
-        @using (Html.BeginUmbracoForm("Index", "Home", FormMethod.Post, new { @novalidate = "novalidate", id = "email-signup-form", onsubmit = "validateTest(event)" }))
+        @using (Html.BeginUmbracoForm("Index", "Home", FormMethod.Post, new { @novalidate = "novalidate", onsubmit = "validateSignup(event)", id = "signup-email-form" }))
         {
             <label hidden>E-mail</label>
-            <input asp-for="@emailSignupForm.Email" type="email" required placeholder="username@domain.com" />
+            <input asp-for="@emailSignupForm.Email" type="email" id="signup-email-input" onkeyup="errorMessageEmail(event)" required placeholder="username@domain.com" />
 
             <button type="submit" class="yellow-btn">Subscribe <i
-                    class="fa-regular fa-arrow-up-right"></i></button>         
-            
+                    class="fa-regular fa-arrow-up-right"></i></button>
 
-            <span asp-validation-for="@emailSignupForm.Email" class="text-danger mb-3 ms-4 mt-1"></span>
-            @*<div asp-validation-summary="ModelOnly" class="text-danger ms-4 mb-5 no-bullets text-center"></div>*@
+            <span class="text-danger" id="signup-email-error"></span>
+            <span asp-validation-for="@emailSignupForm.Email" class="text-danger"></span>
             @if (TempData["SuccessMessage"] != null)
             {
-                <div class="text-success ms-4 mb-5 no-bullets text-center">@TempData["SuccessMessage"]</div>
+                <span class="text-success no-bullets" id="signup-email-success">@TempData["SuccessMessage"]</span>
             }
         }
     </div>

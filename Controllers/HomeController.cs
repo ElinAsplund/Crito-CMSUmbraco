@@ -21,13 +21,12 @@ namespace Crito.Controllers
             if (!ModelState.IsValid)
             {
                 TempData.Clear();
-                //ModelState.AddModelError("", "Please, have a look at the current error message/messages!");
                 return CurrentUmbracoPage();
             }
 
             emailSignupForm.Created = DateTime.Now;
             TempData.Clear();
-            TempData["SuccessMessage"] = "You have now signed up successfully!";
+            TempData["SuccessMessage"] = "You have now signed up to our newsletter!";
 
             return CurrentUmbracoPage();
         }
