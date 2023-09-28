@@ -12,7 +12,7 @@ if (activePage === "/") {
     });
 }
 
-//Validate news-update-signup section
+//Validate news-update-signup section:
 function validateSignupForm(e) {
     e.preventDefault();
     const errorMsg = document.querySelector(`#signup-email-error`);
@@ -28,6 +28,8 @@ function validateSignupForm(e) {
     console.log(`allOK: ` + allOK)
 }
 
+//Adds error message to email-input:
+//Signup email 
 function errorMessageSignupEmail(e) {
     const emailInput = e.target;
     const errorMsg = document.querySelector(`#signup-email-error`);
@@ -46,7 +48,8 @@ function errorMessageSignupEmail(e) {
         errorMsg.innerText = `Please enter an email.`;
 }
 
-//Validate contact-form section
+//Validate contact-form section:
+//Validates all inputs
 function validateContactForm(e) {
     e.preventDefault();
     const errorName = document.querySelector(`#contact-name-error`);
@@ -72,10 +75,22 @@ function checkIfAllInputsAreEntered() {
         return false;
 }
 
+function clearSuccessMessage() {
+    const successMsg = document.querySelector(`#contact-form-success`);
+
+    if (successMsg)
+        successMsg.innerText = ``;
+}
+
+//Adds error messages to name, email and message-inputs:
+
+//Contact name
 function errorMessageContactName(e) {
     const nameInput = e.target;
     const errorMsg = document.querySelector(`#contact-name-error`);
     const regExName = /^[a-öA-Ö]+(?:[ é'-][a-öA-Ö]+)*$/;
+
+    clearSuccessMessage()
 
     errorMsg.innerText = ``;
 
@@ -86,10 +101,13 @@ function errorMessageContactName(e) {
         errorMsg.innerText = `Please enter an name.`;
 }
 
+//Contact email
 function errorMessageContactEmail(e) {
     const emailInput = e.target;
     const errorMsg = document.querySelector(`#contact-email-error`);
     const regExEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    clearSuccessMessage()
 
     errorMsg.innerText = ``;
 
@@ -100,9 +118,12 @@ function errorMessageContactEmail(e) {
         errorMsg.innerText = `Please enter an email.`;
 }
 
+//Contact message
 function errorMessageContactMessage(e) {
     const messageInput = e.target;
     const errorMsg = document.querySelector(`#contact-message-error`);
+
+    clearSuccessMessage()
 
     errorMsg.innerText = ``;
 

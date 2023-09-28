@@ -8,7 +8,7 @@
 <!-- news-update-signup -->
 <section class="news-update-signup">
     <div class="container">
-        <p class="font-dm-lg-heading">Get News Updates By Signup</p>
+        <p class="font-dm-lg-heading">@Model.Value("signupEmailHeading")</p>
 
         @using (Html.BeginUmbracoForm("Index", "Home", FormMethod.Post, new { @novalidate = "novalidate", onsubmit = "validateSignupForm(event)", id = "signup-email-form" }))
         {

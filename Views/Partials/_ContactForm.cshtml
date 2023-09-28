@@ -8,9 +8,8 @@
 <!-- contact-form -->
 <section class="contact-form" id="contact-form-section">
     <div class="container">
-        <h1>HARDCODED</h1>
         <div class="d-flex justify-content-center">
-            <p class="font-dm-lg-heading">Leave us a message for any information.</p>
+            <p class="font-dm-lg-heading">@Model.Value("contactFormHeading")</p>
         </div>
         @using (Html.BeginUmbracoForm("Index", "Contacts", FormMethod.Post, new { @novalidate = "novalidate", id = "contact-form", onsubmit = "validateContactForm(event)" }))
         {
