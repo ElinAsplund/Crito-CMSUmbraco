@@ -98,7 +98,7 @@ function errorMessageContactName(e) {
         errorMsg.innerText = `Please enter a valid name.`;
 
     if (nameInput.value === ``)
-        errorMsg.innerText = `Please enter an name.`;
+        errorMsg.innerText = `Please enter a name.`;
 }
 
 //Contact email
@@ -137,8 +137,9 @@ function errorMessageContactMessage(e) {
 //Scrolling to current section on page when rerendering, after submitting a form
 document.addEventListener('DOMContentLoaded', function () {
     const successMsg = document.querySelector(`#signup-email-success`);
+    const alreadyRegisteredMsg = document.querySelector(`#sigup-email-already-registered`);
 
-    if (successMsg)
+    if (successMsg || alreadyRegisteredMsg)
         window.location.hash = "signup-email-form";
 });
 

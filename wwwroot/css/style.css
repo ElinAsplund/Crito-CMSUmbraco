@@ -632,7 +632,8 @@ footer .footer-bottom .social-media a i {
   height: 100%;
   min-width: fit-content;
 }
-.news-update-signup .container form span {
+.news-update-signup .container form span,
+.news-update-signup .container form div {
   position: absolute;
   bottom: -2rem;
   left: 4rem;

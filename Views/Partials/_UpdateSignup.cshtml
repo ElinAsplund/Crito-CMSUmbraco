@@ -2,7 +2,7 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 
 @{
-    var emailSignupForm = new EmailSignupForm();
+    var subscriber = new EmailSignupForm();
 }
 
 <!-- news-update-signup -->
@@ -12,17 +12,26 @@
 
         @using (Html.BeginUmbracoForm("Index", "Home", FormMethod.Post, new { @novalidate = "novalidate", onsubmit = "validateSignupForm(event)", id = "signup-email-form" }))
         {
-            <label hidden>E-mail</label>
-            <input asp-for="@emailSignupForm.Email" type="email" id="signup-email-input" onkeyup="errorMessageSignupEmail(event)" required placeholder="username@domain.com" />
+            <div asp-validation-summary="ModelOnly" class="text-danger no-bullets"></div>
 
-            <button type="submit" class="yellow-btn">Subscribe <i
-                    class="fa-regular fa-arrow-up-right"></i></button>
+            <label hidden>E-mail</label>
+            <input asp-for="@subscriber.Email" type="email" id="signup-email-input" onkeyup="errorMessageSignupEmail(event)" required placeholder="username@domain.com" />
+
+            <button type="submit" class="yellow-btn">
+                Subscribe 
+                <i class="fa-regular fa-arrow-up-right"></i></button>
 
             <span class="text-danger" id="signup-email-error"></span>
-            <span asp-validation-for="@emailSignupForm.Email" class="text-danger"></span>
+            <span asp-validation-for="@subscriber.Email" class="text-danger"></span>
+            
             @if (TempData["SuccessMessage"] != null)
             {
-                <span class="text-success no-bullets" id="signup-email-success">@TempData["SuccessMessage"]</span>
+                <span class="text-success" id="signup-email-success">@TempData["SuccessMessage"]</span>
+            }
+
+            @if (TempData["AlreadyRegisteredMessage"] != null)
+            {
+                <span class="text-danger" id="sigup-email-already-registered">@TempData["AlreadyRegisteredMessage"]</span>
             }
         }
     </div>

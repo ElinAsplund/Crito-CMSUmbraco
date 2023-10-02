@@ -1,4 +1,5 @@
 ﻿using Crito.Models;
+using Crito.Services;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Core.Cache;
 using Umbraco.Cms.Core.Logging;
@@ -12,21 +13,32 @@ namespace Crito.Controllers
 {
     public class HomeController : SurfaceController
     {
-        public HomeController(IUmbracoContextAccessor umbracoContextAccessor, IUmbracoDatabaseFactory databaseFactory, ServiceContext services, AppCaches appCaches, IProfilingLogger profilingLogger, IPublishedUrlProvider publishedUrlProvider) : base(umbracoContextAccessor, databaseFactory, services, appCaches, profilingLogger, publishedUrlProvider)
+        private readonly SubscriberService _subscriberService;
+
+        public HomeController(IUmbracoContextAccessor umbracoContextAccessor, IUmbracoDatabaseFactory databaseFactory, ServiceContext services, AppCaches appCaches, IProfilingLogger profilingLogger, IPublishedUrlProvider publishedUrlProvider, SubscriberService subscriberService) : base(umbracoContextAccessor, databaseFactory, services, appCaches, profilingLogger, publishedUrlProvider)
         {
+            _subscriberService = subscriberService;
         }
 
-        public IActionResult Index(EmailSignupForm emailSignupForm)
+        public async Task<IActionResult> Index(EmailSignupForm subscriber)
         {
             if (!ModelState.IsValid)
             {
                 TempData.Clear();
+                ModelState.AddModelError("", "Something went wrong!");
                 return CurrentUmbracoPage();
             }
 
-            emailSignupForm.Created = DateTime.Now;
+            subscriber.Created = DateTime.Now;
+            var notAlreadyRegistered = await _subscriberService.AddSubscriberAsync(subscriber);
+
             TempData.Clear();
-            TempData["SuccessMessage"] = "You have now signed up to our newsletter!";
+            if (notAlreadyRegistered)
+                TempData["SuccessMessage"] = "You have now signed up to our newsletter!";
+            else
+                TempData["AlreadyRegisteredMessage"] = "Your e-mail is already registered!";
+
+            ModelState.Clear();
 
             return CurrentUmbracoPage();
         }
