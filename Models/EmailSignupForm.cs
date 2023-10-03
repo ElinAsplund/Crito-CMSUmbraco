@@ -8,5 +8,5 @@ public class EmailSignupForm
     [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", ErrorMessage = "You need to enter a valid E-mail.")]
     public string Email { get; set; } = null!;
 
-    public DateTime Created { get; set; }
+    //public DateTime Created { get; set; }
 }

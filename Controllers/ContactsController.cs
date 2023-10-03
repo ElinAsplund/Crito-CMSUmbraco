@@ -1,4 +1,5 @@
 ﻿using Crito.Models;
+using Crito.Services;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Core.Cache;
 using Umbraco.Cms.Core.Logging;
@@ -12,30 +13,34 @@ namespace Crito.Controllers
 {
     public class ContactsController : SurfaceController
     {
-        public ContactsController(IUmbracoContextAccessor umbracoContextAccessor, IUmbracoDatabaseFactory databaseFactory, ServiceContext services, AppCaches appCaches, IProfilingLogger profilingLogger, IPublishedUrlProvider publishedUrlProvider) : base(umbracoContextAccessor, databaseFactory, services, appCaches, profilingLogger, publishedUrlProvider)
+        private readonly ContactMessageService _contactMessageService;
+
+        public ContactsController(IUmbracoContextAccessor umbracoContextAccessor, IUmbracoDatabaseFactory databaseFactory, ServiceContext services, AppCaches appCaches, IProfilingLogger profilingLogger, IPublishedUrlProvider publishedUrlProvider, ContactMessageService contactMessageService) : base(umbracoContextAccessor, databaseFactory, services, appCaches, profilingLogger, publishedUrlProvider)
         {
+            _contactMessageService = contactMessageService;
         }
 
-        public IActionResult Index(ContactForm contactForm)
+        public async Task<IActionResult> Index(ContactForm contactForm)
         {
             if (!ModelState.IsValid)
             {
                 TempData.Clear();
                 ModelState.AddModelError("", "Please, have a look at the current error message/messages!");
                 return CurrentUmbracoPage();
-            } 
+            }
 
-            contactForm.Created = DateTime.Now;
-            ModelState.AddModelError("", "");
+            var registered = await _contactMessageService.AddContactMessageAsync(contactForm);
 
             TempData.Clear();
-            TempData["SuccessMessage"] = "Your comment has now been sent!";
-
-            ModelState.Clear();
+            if (registered)
+            {
+                TempData["SuccessMessage"] = "Your message has now been sent!";
+                ModelState.Clear();
+            }
+            else
+                TempData["AlreadyRegisteredMessage"] = "Something went wrong! The message wasn't sent!";
 
             return CurrentUmbracoPage();
-
-            //return LocalRedirect(contactForm.RedirectUrl ?? "/");
         }
     }
 }

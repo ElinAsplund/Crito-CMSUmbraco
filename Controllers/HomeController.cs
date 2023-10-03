@@ -29,14 +29,13 @@ namespace Crito.Controllers
                 return CurrentUmbracoPage();
             }
 
-            subscriber.Created = DateTime.Now;
-            var notAlreadyRegistered = await _subscriberService.AddSubscriberAsync(subscriber);
+            var registered = await _subscriberService.AddSubscriberAsync(subscriber);
 
             TempData.Clear();
-            if (notAlreadyRegistered)
+            if (registered)
                 TempData["SuccessMessage"] = "You have now signed up to our newsletter!";
             else
-                TempData["AlreadyRegisteredMessage"] = "Your e-mail is already registered!";
+                TempData["AlreadyRegisteredMessage"] = "Something went wrong! OR Your e-mail is already registered!";
 
             ModelState.Clear();
 

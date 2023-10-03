@@ -13,6 +13,7 @@ if (activePage === "/") {
 }
 
 //Validate news-update-signup section:
+//Signup email 
 function validateSignupForm(e) {
     e.preventDefault();
     const errorMsg = document.querySelector(`#signup-email-error`);
@@ -34,12 +35,16 @@ function errorMessageSignupEmail(e) {
     const emailInput = e.target;
     const errorMsg = document.querySelector(`#signup-email-error`);
     const successMsg = document.querySelector(`#signup-email-success`);
+    const alreadyRegisterdMsg = document.querySelector(`#sigup-email-already-registered`);
     const regExEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     errorMsg.innerText = ``;
 
     if (successMsg)
         successMsg.innerText = ``;
+
+    if (alreadyRegisterdMsg)
+        alreadyRegisterdMsg.innerText = ``;
 
     if (!regExEmail.test(emailInput.value))
         errorMsg.innerText = `Please enter a valid email.`;
@@ -64,6 +69,7 @@ function validateContactForm(e) {
         console.log(`CAN NOT SEND`)
 }
 
+//Check if all inputs are entered
 function checkIfAllInputsAreEntered() {
     const inputName = document.querySelector(`#contact-name-input`);
     const inputEmail = document.querySelector(`#contact-email-input`);
@@ -75,11 +81,16 @@ function checkIfAllInputsAreEntered() {
         return false;
 }
 
-function clearSuccessMessage() {
+//Clear Messages
+function clearMessages() {
     const successMsg = document.querySelector(`#contact-form-success`);
+    const alreadyRegisterdMsg = document.querySelector(`#contact-form-already-registered`);
 
     if (successMsg)
         successMsg.innerText = ``;
+
+    if (alreadyRegisterdMsg)
+        alreadyRegisterdMsg.innerText = ``;
 }
 
 //Adds error messages to name, email and message-inputs:
@@ -90,7 +101,7 @@ function errorMessageContactName(e) {
     const errorMsg = document.querySelector(`#contact-name-error`);
     const regExName = /^[a-öA-Ö]+(?:[ é'-][a-öA-Ö]+)*$/;
 
-    clearSuccessMessage()
+    clearMessages()
 
     errorMsg.innerText = ``;
 
@@ -107,7 +118,7 @@ function errorMessageContactEmail(e) {
     const errorMsg = document.querySelector(`#contact-email-error`);
     const regExEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    clearSuccessMessage()
+    clearMessages()
 
     errorMsg.innerText = ``;
 
@@ -123,7 +134,7 @@ function errorMessageContactMessage(e) {
     const messageInput = e.target;
     const errorMsg = document.querySelector(`#contact-message-error`);
 
-    clearSuccessMessage()
+    clearMessages()
 
     errorMsg.innerText = ``;
 
@@ -145,7 +156,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', function () {
     const successMsg = document.querySelector(`#contact-form-success`);
+    const alreadyRegisteredMsg = document.querySelector(`#contact-form-already-registered`);
 
-    if (successMsg)
+    if (successMsg || alreadyRegisteredMsg)
         window.location.hash = "contact-form-section";
 });

@@ -28,7 +28,6 @@ namespace Crito.Services
                     _context.Subscribers.Add(new EmailSignupFormEntity 
                     { 
                         Email = form.Email,
-                        Created = form.Created
                     });
 
                     await _context.SaveChangesAsync();

@@ -14,7 +14,6 @@ public class ContactForm
 
     [Required(ErrorMessage = "Please enter a comment.")]
     public string Message { get; set; } = null!;
-    public DateTime Created { get; set; }
+    //public DateTime Created { get; set; }
 
-    //public string? RedirectUrl { get; set; } = "/";
 }

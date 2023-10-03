@@ -36,6 +36,7 @@ namespace Crito
             //Dependency Injection
             services.AddDbContext<DataContext>(x => x.UseSqlite(_config.GetConnectionString("sqliteDb")));
             services.AddScoped<SubscriberService>();
+            services.AddScoped<ContactMessageService>();
 
             services.AddUmbraco(_env, _config)
                 .AddBackOffice()
