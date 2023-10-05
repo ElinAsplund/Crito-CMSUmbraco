@@ -15,7 +15,10 @@
     var heading = Model.Value("articleAndNewsCarouselHeading") == null ? "Get Every Single Articles & News (Static)" : Model.Value("articleAndNewsCarouselHeading")!.ToString();
     var buttonText = Model.Value("articleAndNewsCarouselButtonText") == null ? "Browse Articles" : Model.Value("articleAndNewsCarouselButtonText")!.ToString();
     var buttonUrl = Model.Value("articleAndNewsCarouselButtonUrl") == null ? "/news" : Model.Value("articleAndNewsCarouselButtonUrl")!.ToString();
+    
+    var sharedContentNode = Model.Value<IPublishedContent>("articleDetailPageContentPicker");
 }
+
 
 
 <!-- article-and-news-carousel -->
@@ -23,14 +26,37 @@
     <div class="container">
         <div class="d-flex justify-content-between margin">
             <div>
-                <p class="heading-sm">@sectionTitle</p>
-                <h2 class="font-dm-lg-heading">@heading</h2>
+                @if (sharedContentNode != null)
+                {
+                    <p class="heading-sm">@sharedContentNode.Value("articleAndNewsCarouselSectionTitle")</p>
+                    <h2 class="font-dm-lg-heading">@sharedContentNode.Value("articleAndNewsCarouselHeading")</h2>
+                }
+                else{
+                    <p class="heading-sm">@sectionTitle</p>
+                    <h2 class="font-dm-lg-heading">@heading</h2>
+                }
+                <!--<p class="heading-sm">sectionTitle</p>-->
+                <!--<h2 class="font-dm-lg-heading">heading</h2>-->
             </div>
             <div class="d-flex justify-content-end align-items-end"">
-                <a href=" @buttonUrl">
-                    <button class=" yellow-btn">@buttonText <i
-                        class="fa-regular fa-arrow-up-right"></i></button>
-                </a>
+
+                @if (sharedContentNode != null)
+                {
+                    <a href=" @sharedContentNode.Value("articleAndNewsCarouselButtonUrl")">
+                        <button class=" yellow-btn">
+                            @sharedContentNode.Value("articleAndNewsCarouselButtonText") <i class="fa-regular fa-arrow-up-right"></i>
+                        </button>
+                    </a>
+                }
+                else
+                {
+                    <a href=" @buttonUrl">
+                        <button class=" yellow-btn">
+                        @buttonText <i class="fa-regular fa-arrow-up-right"></i>
+                        </button>
+                    </a>
+                }
+
             </div>
         </div>
         <!-- carousel -->

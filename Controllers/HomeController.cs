@@ -33,11 +33,15 @@ namespace Crito.Controllers
 
             TempData.Clear();
             if (registered)
+            {
+                ModelState.Clear();
                 TempData["SuccessMessage"] = "You have now signed up to our newsletter!";
+            }
+            else if(!registered)
+                TempData["AlreadyRegisteredMessage"] = "Your e-mail is already registered!";
             else
-                TempData["AlreadyRegisteredMessage"] = "Something went wrong! OR Your e-mail is already registered!";
+                TempData["AlreadyRegisteredMessage"] = "Something went wrong!";
 
-            ModelState.Clear();
 
             return CurrentUmbracoPage();
         }
