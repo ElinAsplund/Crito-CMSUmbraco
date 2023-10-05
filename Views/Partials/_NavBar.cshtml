@@ -11,6 +11,15 @@
 @{ 
     var site = Model.Root();
     var selection = Model.Root().Children.Where(x => x.IsVisible(PublishedValueFallback)).ToArray(); 
+    
+    var homeContent = Umbraco.Content(Guid.Parse("66d1bc48-f41c-4de4-8d67-6afae07b82d1"));
+
+    var phoneNumber = homeContent.Value("navBarPhoneNumber");
+    var email = homeContent.Value("navBarEmail");
+    var streetAddress = homeContent.Value("navBarStreetAddress");
+    var postalCode = homeContent.Value("navBarPostalCode");
+    var city = homeContent.Value("navBarCity");
+    
 }
 
 <!-- nav-bar -->
@@ -26,17 +35,17 @@
                 <div class="d-flex align-items-center">
                     <div class="phone">
                         <i class="fa-sharp fa-light fa-phone-volume"></i>
-                        <a href="#">+46 (8) 121 470 50</a>
+                        <a href="#">@phoneNumber</a>
                         <p class="vertical">|</p>
                     </div>
                     <div class="mail">
                         <i class="fa-light fa-envelope-dot"></i>
-                        <a href="#">info@crito.com</a>
+                        <a href="#">@email</a>
                         <p class="vertical">|</p>
                     </div>
                     <div class="address">
                         <i class="fa-sharp fa-light fa-location-dot"></i>
-                        <a href="#">Sveavägen 31, 111 34 STOCKHOLM</a>
+                        <a href="#">@streetAddress, @postalCode @city</a>
                     </div>
                 </div>
                 <div class="social-media">

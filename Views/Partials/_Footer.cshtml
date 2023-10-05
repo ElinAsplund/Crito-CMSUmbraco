@@ -1,16 +1,21 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 
+@{
+    var homeContent = Umbraco.Content(Guid.Parse("66d1bc48-f41c-4de4-8d67-6afae07b82d1"));
+    
+    var shortPresentation = homeContent.Value("footerShortCompanyPresentation");
+}
 <!-- footer -->
 <footer style="">
     <div class="container">
         <div class="footer-top">
             <div class="business-short-info">
                 <div class="img-holder">
-                    <img src="~/images/logos/crito-white.png" />
+                    <a href="/">
+                        <img src="~/images/logos/crito-white.png" />
+                    </a>
                 </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat obcaecati voluptas
-                    voluptates!
-                    Voluptates laborum nam ratione minus necessitatibus, iure praesentium.</p>
+                <p>@shortPresentation</p>
             </div>
             <div class="footer-links">
                 <ul>

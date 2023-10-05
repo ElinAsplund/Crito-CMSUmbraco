@@ -3,12 +3,16 @@
 
 @{
     var subscriber = new EmailSignupForm();
+    
+    var homeContent = Umbraco.Content(Guid.Parse("66d1bc48-f41c-4de4-8d67-6afae07b82d1"));
+
+    var heading = homeContent!.Value("signupEmailHeading");
 }
 
 <!-- news-update-signup -->
 <section class="news-update-signup">
     <div class="container">
-        <p class="font-dm-lg-heading">@Model.Value("signupEmailHeading")</p>
+        <p class="font-dm-lg-heading">@heading</p>
 
         @using (Html.BeginUmbracoForm("Index", "Home", FormMethod.Post, new { @novalidate = "novalidate", onsubmit = "validateSignupForm(event)", id = "signup-email-form" }))
         {

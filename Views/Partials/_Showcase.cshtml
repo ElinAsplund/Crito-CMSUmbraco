@@ -1,6 +1,9 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @using Umbraco.Cms.Core.Models
 
+@using Umbraco.Cms.Core.Models.PublishedContent;
+
+
 <!-- showcase -->
 <section class="showcase">
     <img src="./images/graphics/background-lines.svg" class="graphic-lines" />
@@ -25,6 +28,7 @@
         <div class="img-holder">
             @{
                 var showcaseImage = Model.Value<MediaWithCrops>("showcaseImage");
+
                 if (showcaseImage != null)
                 {
                     <img src="@showcaseImage.MediaUrl()" alt="@Model.Value("showcaseTitle")" />
