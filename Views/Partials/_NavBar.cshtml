@@ -14,11 +14,11 @@
     
     var homeContent = Umbraco.Content(Guid.Parse("66d1bc48-f41c-4de4-8d67-6afae07b82d1"));
 
-    var phoneNumber = homeContent.Value("navBarPhoneNumber");
-    var email = homeContent.Value("navBarEmail");
-    var streetAddress = homeContent.Value("navBarStreetAddress");
-    var postalCode = homeContent.Value("navBarPostalCode");
-    var city = homeContent.Value("navBarCity");
+    var phoneNumber = homeContent!.Value("navBarPhoneNumber");
+    var email = homeContent!.Value("navBarEmail");
+    var streetAddress = homeContent!.Value("navBarStreetAddress");
+    var postalCode = homeContent!.Value("navBarPostalCode");
+    var city = homeContent!.Value("navBarCity");
     
 }
 

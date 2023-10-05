@@ -3,7 +3,7 @@
 @{
     var homeContent = Umbraco.Content(Guid.Parse("66d1bc48-f41c-4de4-8d67-6afae07b82d1"));
     
-    var shortPresentation = homeContent.Value("footerShortCompanyPresentation");
+    var shortPresentation = homeContent!.Value("footerShortCompanyPresentation");
 }
 <!-- footer -->
 <footer style="">

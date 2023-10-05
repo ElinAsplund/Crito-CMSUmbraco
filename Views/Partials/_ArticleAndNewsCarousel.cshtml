@@ -13,10 +13,10 @@
 
     var homeContent = Umbraco.Content(Guid.Parse("66d1bc48-f41c-4de4-8d67-6afae07b82d1"));
 
-    var sectionTitle = homeContent.Value("articleAndNewsCarouselSectionTitle");
-    var heading = homeContent.Value("articleAndNewsCarouselHeading");
-    var buttonText = homeContent.Value("articleAndNewsCarouselButtonText");
-    var buttonUrl = homeContent.Value("articleAndNewsCarouselButtonUrl");
+    var sectionTitle = homeContent!.Value("articleAndNewsCarouselSectionTitle");
+    var heading = homeContent!.Value("articleAndNewsCarouselHeading");
+    var buttonText = homeContent!.Value("articleAndNewsCarouselButtonText");
+    var buttonUrl = homeContent!.Value("articleAndNewsCarouselButtonUrl");
 }
 
 <!-- article-and-news-carousel -->
